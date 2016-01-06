@@ -1,6 +1,5 @@
 var Cities = function () {
 	this._loadedCities = [];
-	this._addedObjects = []; // todo: doesn't belong here, move to another class
 	this._page = 0;
 	this._perPage = 100;
 	this._maxYear = 0;
@@ -46,38 +45,8 @@ Cities.prototype.load = function () {
 	return loadDfd;
 };
 
-Cities.prototype.getCitiesByYear = function (year) {
-	var toAdd = [],
-		toRemove = [];
-
-	for (var i in this._loadedCities) {
-		var city = this._loadedCities[i],
-			addedCity = this.getAddedCity(city);
-
-		if (city.founded <= year && !addedCity) {
-			toAdd.push(city);
-		} else if (city.founded > year && addedCity) {
-			toRemove.push(addedCity.geometry);
-
-			var position = this._addedObjects.indexOf(addedCity);
-			this._addedObjects.splice(position, 1);
-		}
-	}
-
-	return {
-		toAdd: toAdd,
-		toRemove: toRemove
-	};
-};
-
-Cities.prototype.getAddedCity = function (city) {
-	for (var i in this._addedObjects) {
-		if (this._addedObjects[i].city == city) {
-			return this._addedObjects[i];
-		}
-	}
-
-	return null;
+Cities.prototype.getCities = function () {
+	return this._loadedCities;
 };
 
 Cities.prototype.getMaxYear = function () {

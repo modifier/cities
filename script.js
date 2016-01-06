@@ -1,6 +1,7 @@
 (function () {
 	var myMap = null,
-		cities = new Cities();
+		cities = new Cities(),
+		mapObjects = null;
 
 	var pageStartDfd = new Deferred();
 	document.addEventListener('DOMContentLoaded', function () {
@@ -17,6 +18,7 @@
 
 		$slider.addEventListener('input', changeYear);
 
+		mapObjects = new MapObjects(myMap, cities);
 		updateSlider();
 	});
 
@@ -42,26 +44,6 @@
 			});
 		}
 
-		var totalCities = cities.getCitiesByYear($slider.value),
-			citiesToAdd = totalCities.toAdd,
-			citiesToRemove = totalCities.toRemove;
-
-		// add cities
-		for (var i in citiesToAdd) {
-			var cityCircle = new ymaps.Placemark(citiesToAdd[i].coords, {
-				balloonContent: '<a href="' + citiesToAdd[i].url + '" target="_blank">' + citiesToAdd[i].name + '</a>'
-			});
-			myMap.geoObjects.add(cityCircle);
-
-			cities._addedObjects.push({
-				city: citiesToAdd[i],
-				geometry: cityCircle
-			});
-		}
-
-		// remove cities
-		for (var i in citiesToRemove) {
-			myMap.geoObjects.remove(citiesToRemove[i]);
-		}
+		mapObjects.updateCities($slider.value);
 	}
 })();

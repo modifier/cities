@@ -5,6 +5,7 @@ var Cities = function () {
 	this._perPage = 100;
 	this._maxYear = 0;
 	this._minYear = 3000;
+	this._noMoreCities = false;
 };
 
 Cities.prototype.load = function () {
@@ -14,6 +15,10 @@ Cities.prototype.load = function () {
 		loadDfd = new Deferred();
 
 	Queries.loadCitiesData(this._page, this._perPage).done(function (cities) {
+		if (cities.length === 0) {
+			that._noMoreCities = true;
+		}
+
 		for (var i in cities) {
 			var city = cities[i];
 
@@ -81,4 +86,8 @@ Cities.prototype.getMaxYear = function () {
 
 Cities.prototype.getMinYear = function () {
 	return this._minYear;
+};
+
+Cities.prototype.canLoadMore = function () {
+	return !this._noMoreCities;
 };

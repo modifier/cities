@@ -1,7 +1,9 @@
 (function () {
 	var myMap = null,
 		cities = new Cities(),
-		mapObjects = null;
+		mapObjects = null,
+		$year = document.getElementById('current_year'),
+		$slider = document.getElementById('year_slider');
 
 	var pageStartDfd = new Deferred();
 	document.addEventListener('DOMContentLoaded', function () {
@@ -16,10 +18,18 @@
 	        zoom: 5
 	    });
 
-		$slider.addEventListener('input', changeYear);
+		noUiSlider.create($slider, {
+			start: [859],
+			range: {
+				min: 859,
+				max: 1400
+			}
+		});
 
 		mapObjects = new MapObjects(myMap, cities);
 		updateSlider();
+
+	    $slider.noUiSlider.on('update', changeYear);
 	});
 
 	function updateSlider () {
@@ -30,11 +40,8 @@
 	    changeYear();
 	};
 
-	var $year = document.getElementById('current_year'),
-		$slider = document.getElementById('year_slider');
-
 	function changeYear () {
-		$year.innerHTML = $slider.value;
+		$year.innerHTML = parseInt($slider.noUiSlider.get());
 
 		if ($slider.value == cities.getMaxYear() && cities.canLoadMore()) {
 			$slider.disabled = 'disabled';
@@ -44,6 +51,6 @@
 			});
 		}
 
-		mapObjects.updateCities(parseInt($slider.value));
+		mapObjects.updateCities(parseInt($slider.noUiSlider.get()));
 	}
 })();

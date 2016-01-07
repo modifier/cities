@@ -4,12 +4,14 @@
 		<title>Допотопная Русь</title>
 		<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link href="nouislider/nouislider.min.css" rel="stylesheet" />
 	</head>
 	<body>
-		 <div id="map" style="width: 100%; height: 800px"></div>
-		 <div><input id="year_slider" type="range" min="800" max="1400" step="1" value="800" style="width: 100%" disabled="disabled" /></div>
-		 <div id="current_year"></div>
+		<div id="map" style="width: 100%; height: 800px"></div>
+		<div id="year_slider"></div>
+		<div id="current_year"></div>
 		 
+		<script src="nouislider/nouislider.min.js"></script>
 		<script src="deferred.js"></script>
 		<script src="queries.js"></script>
 		<script src="cities.js"></script>

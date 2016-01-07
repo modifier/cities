@@ -1,0 +1,30 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 40px;
+	box-sizing: border-box;
+}
+
+#year_slider {
+    margin: -30px 30px 10px;
+}
+
+#year_slider.noUi-horizontal .noUi-handle {
+	line-height: 26px;
+    width: 50px;
+    left: -25px;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#year_slider .noUi-handle:after,
+#year_slider .noUi-handle:before {
+	display: none;
+}

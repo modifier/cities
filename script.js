@@ -44,6 +44,6 @@
 			});
 		}
 
-		mapObjects.updateCities($slider.value);
+		mapObjects.updateCities(parseInt($slider.value));
 	}
 })();

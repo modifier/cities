@@ -39,10 +39,7 @@ MapObjects.prototype.getCitiesToRemove = function (year) {
 			addedCity = this.getAddedCity(city);
 
 		if (city.founded > year && addedCity) {
-			result.push(addedCity.geometry);
-
-			var position = this._addedObjects.indexOf(addedCity);
-			this._addedObjects.splice(position, 1);
+			result.push(addedCity);
 		}
 	}
 
@@ -74,7 +71,7 @@ MapObjects.prototype.updateCities = function (year) {
 		var citiesToRemove = this.getCitiesToRemove(year);
 
 		for (var i in citiesToRemove) {
-			var cityObject = this.getAddedCity(citiesToRemove[i]);
+			var cityObject = citiesToRemove[i];
 			this._map.geoObjects.remove(cityObject.geometry);
 
 			var cityIndex = this._addedObjects.indexOf(cityObject);

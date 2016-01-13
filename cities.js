@@ -1,7 +1,7 @@
 var Cities = function () {
 	this._loadedCities = [];
 	this._page = 0;
-	this._perPage = 100;
+	this._perPage = 1000;
 	this._maxYear = 0;
 	this._minYear = 3000;
 	this._noMoreCities = false;

@@ -47,7 +47,7 @@
 
 	function changeYear () {
 		var year = parseInt($slider.noUiSlider.get());
-		$handle.innerHTML = year;
+		$handle.innerHTML = year + ' год';
 
 		if (year === cities.getMaxYear() && cities.canLoadMore()) {
 			$slider.disabled = 'disabled';

@@ -11,15 +11,15 @@ html, body {
 }
 
 #year_slider {
-	margin: -30px 30px 10px;
+	margin: -30px 40px 10px;
 	background: #FFF2F2;
 	border: 1px solid #000000;
 }
 
 #year_slider.noUi-horizontal .noUi-handle {
 	line-height: 26px;
-	width: 50px;
-	left: -25px;
+	width: 76px;
+	left: -38px;
 	text-align: center;
 	font-family: Helvetica, sans-serif;
 	font-size: 14px;

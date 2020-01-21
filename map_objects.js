@@ -56,7 +56,8 @@ MapObjects.prototype.updateCities = function (year) {
 		var citiesToAdd = this.getCitiesToAdd(year);
 
 		for (var i in citiesToAdd) {
-			var cityCircle = new ymaps.Placemark(citiesToAdd[i].coords, {
+		  var coords = citiesToAdd[i].coords;
+			var cityCircle = new ymaps.Placemark([coords[1], coords[0]], {
 				balloonContent: '<a href="' + encodeURI('https://ru.wikipedia.org/wiki/' + citiesToAdd[i].name) + '" target="_blank">' + citiesToAdd[i].name + '</a>'
 			});
 			this._map.geoObjects.add(cityCircle);

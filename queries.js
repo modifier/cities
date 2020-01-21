@@ -46,7 +46,7 @@ var Queries = (function () {
 			"  ?city wdt:P625 ?coordinate .",
 			"  ?city wdt:P571 ?inception .",
 			"  ?city rdfs:label ?name filter (lang(?name) = \"ru\").",
-			"  ?city wdt:P31 wd:Q515",
+			"  ?city wdt:P31 wd:Q7930989",
 			"}",
 			"ORDER BY ?inception"]);
 

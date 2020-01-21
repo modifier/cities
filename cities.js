@@ -21,22 +21,26 @@ Cities.prototype.load = function () {
 		for (var i in cities) {
 			var city = cities[i];
 
-			var datum = {
-				name: city.name.value,
-				url: city.city.value,
-				founded: parseInt(city.inception.value.match(/^\d+/)[0], 10),
-				coords: city.coordinate.value.match(/\d+(?:\.\d+)*/g)
-			};
+			try {
+        var datum = {
+          name: city.name.value,
+          url: city.city.value,
+          founded: parseInt(city.inception.value.match(/^\d+/)[0], 10),
+          coords: city.coordinate.value.match(/\d+(?:\.\d+)*/g)
+        };
 
-			if (datum.founded > that._maxYear) {
-				that._maxYear = datum.founded;
-			}
+        if (datum.founded > that._maxYear) {
+          that._maxYear = datum.founded;
+        }
 
-			if (datum.founded < that._minYear) {
-				that._minYear = datum.founded;
-			}
+        if (datum.founded < that._minYear) {
+          that._minYear = datum.founded;
+        }
 
-			that._loadedCities.push(datum);
+        that._loadedCities.push(datum);
+      } catch (e) {
+			  console.warn('some issues with a city', city, e);
+      }
 		}
 
 		loadDfd.resolve();
